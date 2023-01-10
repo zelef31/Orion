@@ -3,7 +3,7 @@ import { world } from '@minecraft/server'
 import * as xtar from '@minecraft/server-ui'
 import { Click, Icon, Lobby, Moneda, Moneda1, Name, Tema, TemaL } from '../../confi/xtar.js'
 import { PrefixCN, PrefixCT, PrefixE, PrefixET, PrefixF, PrefixR } from '../chat/lib/xtar.js'
-import { getEmoji, getstatuts, getFake, getNK } from '../chat/xtar.js'
+import { getEmoji, getEstados, getFake, getNK } from '../chat/xtar.js'
 import { Economygen, Economylog, Economyreg, getScore, testTag } from '../util/xtar.js'
 import { noob, pro, bt, yt, strm, tiktoke, staff, mod, admin } from './lib/xtar.js'
 import { shop_gee } from './shop/xtar.js'
@@ -93,7 +93,7 @@ function juegosBETA(player) {
                         player.addTag(`enjuego`)
                         player.addTag(`putazo`)
                         player.addTag(`oct`)
-                        player.tell(`${Icon}${TemaL} ${Name} : §rFantastique, vous avez 4 minutes pour finir l'activité`)
+                        player.tell(`${Icon}${TemaL} ${Name} : §rFantastique, vous avez 4 minutes pour finir cette activité`)
                         Economylog(`scoreboard players add "${player.name}" fin_juego 3`, player)
                         Economylog(`scoreboard players add "${player.name}" fin_juego_s 59`, player)
                     }
@@ -918,7 +918,7 @@ function estado(player) {
 function estadisticas(player) {
     const form = new xtar.ActionFormData()
         .title(`${Icon}${TemaL} Statistiques ${Icon}`)
-        .body(`${Icon}${TemaL} >> §rBonjour ${Tema}${player.name}§r, Voici vos Statistiques${Tema}:§r\n\n${TemaL}           -={§r${Tema}Joueur${TemaL}}=-§r\n${TemaL}> §rNom ${TemaL}:§r ${getFake(player)}\n${TemaL}> §rRank ${TemaL}:§r ${getNK(player)}\n${TemaL}> §rEmojis ${TemaL}:§r ${getEmoji(player)}\n${TemaL}> §rstatut ${TemaL}:§r ${getstatuts(player)}\n\n${TemaL}           -={§r${Tema}Economie${TemaL}}=-§r\n${TemaL}> §rNiveau XP ${TemaL}:§r ${getScore(player, `lvlxp`)}\n${TemaL}> §rArgent ${TemaL}:§r ${getScore(player, `${Moneda}`)}\n${TemaL}> §rDepositado ${TemaL}:§r ${getScore(player, `${Moneda1}`)}\n\n${TemaL}           -={§r${Tema}Ponctuation${TemaL}}=-§r\n${TemaL}> §rKills ${TemaL}:§r ${getScore(player, `kills`)}\n${TemaL}> §rMorts ${TemaL}:§r ${getScore(player, `deaths`)}\n\n${TemaL}             -={§r${Tema}Temps${TemaL}}=-§r\n${TemaL}> §rJours ${TemaL}:§r ${getScore(player, `d`)}\n${TemaL}> §rHeures ${TemaL}:§r ${getScore(player, `h`)}\n${TemaL}> §rMinutes ${TemaL}:§r ${getScore(player, `m`)}\n${TemaL}> §rSecondes ${TemaL}:§r ${getScore(player, `s`)}\n`)
+        .body(`${Icon}${TemaL} >> §rBonjour ${Tema}${player.name}§r, Voici vos Statistiques${Tema}:§r\n\n${TemaL}           -={§r${Tema}Joueur${TemaL}}=-§r\n${TemaL}> §rNom ${TemaL}:§r ${getFake(player)}\n${TemaL}> §rRank ${TemaL}:§r ${getNK(player)}\n${TemaL}> §rEmojis ${TemaL}:§r ${getEmoji(player)}\n${TemaL}> §rstatut ${TemaL}:§r ${getEstados(player)}\n\n${TemaL}           -={§r${Tema}Economie${TemaL}}=-§r\n${TemaL}> §rNiveau XP ${TemaL}:§r ${getScore(player, `lvlxp`)}\n${TemaL}> §rArgent ${TemaL}:§r ${getScore(player, `${Moneda}`)}\n${TemaL}> §rDepositado ${TemaL}:§r ${getScore(player, `${Moneda1}`)}\n\n${TemaL}           -={§r${Tema}Ponctuation${TemaL}}=-§r\n${TemaL}> §rKills ${TemaL}:§r ${getScore(player, `kills`)}\n${TemaL}> §rMorts ${TemaL}:§r ${getScore(player, `deaths`)}\n\n${TemaL}             -={§r${Tema}Temps${TemaL}}=-§r\n${TemaL}> §rJours ${TemaL}:§r ${getScore(player, `d`)}\n${TemaL}> §rHeures ${TemaL}:§r ${getScore(player, `h`)}\n${TemaL}> §rMinutes ${TemaL}:§r ${getScore(player, `m`)}\n${TemaL}> §rSecondes ${TemaL}:§r ${getScore(player, `s`)}\n`)
         .button(`§4§lRetour au début${Click}`, 'font/icons/cancel')
     form.show(player).then(result => {
         if (result.selection === 0) {
@@ -931,7 +931,7 @@ function teleports(player) {
     const form = new xtar.ActionFormData()
         .title(`${TemaL}${Icon} Téléportation ${Icon}`)
         .body(`${Icon}${TemaL} >> §rBonjour ${Tema}${player.name}§r, Voici toutes les options pour se téléporter${Tema}.`)
-        .button(`${TemaL}VIP [ Prochainement ]${Click}`, 'textures/ui/dressing_room_skins')
+        .button(`${TemaL}VIP ->> Prochainement ${Click}`, 'textures/ui/dressing_room_skins')
         .button(`${TemaL}Mines${Click}`, 'textures/ui/icon_iron_pickaxe')
         .button(`${TemaL}Coffres${Click}`, 'textures/ui/icon_blackfriday')
         .button(`${TemaL}Random${Click}`, 'textures/ui/icon_summer')
@@ -941,14 +941,14 @@ function teleports(player) {
     form.show(player).then(result => {
         if (result.selection === 1) {
             Economyreg(`${Icon}${TemaL} ${Name} : §rVous avez été envoyé dans les Mines${Tema}.`, player)
-            Economylog(`playsound mob.endermen.Portal @p`, player)
+            Economylog(`playsound mob.endermen.portal @p`, player)
             Economylog(`particle tp ~ ~ ~`, player)
             player.runCommandAsync(`tp "${player.name}" 589.03 -2.00 5768.96`)
             Economylog(`gamemode s @p`, player)
         }
         if (result.selection === 2) {
             Economyreg(`${Icon}${TemaL} ${Name} : §rVous avez été envoyé dans la Salle Des Coffres${Tema}.`, player)
-            Economylog(`playsound mob.endermen.Portal @p`, player)
+            Economylog(`playsound mob.endermen.portal @p`, player)
             Economylog(`particle tp ~ ~ ~`, player)
             player.runCommandAsync(`tp "${player.name}" 572.02 268 -246.69`)
             Economylog(`gamemode a @p`, player)
@@ -958,7 +958,7 @@ function teleports(player) {
             const Yy = Math.round(player.location.y)
             const Zz = Math.round(player.location.z)
             Economyreg(`${Icon}${TemaL} ${Name} : §rVous avez été envoyé dans une Zone Random${Tema}.`, player)
-            Economylog(`playsound mob.endermen.Portal @p`, player)
+            Economylog(`playsound mob.endermen.portal @p`, player)
             Economylog(`particle tp ~ ~ ~`, player)
             Economylog(`effect "${player.name}" slow_falling 35 0 true`, player)
             if (Yy >= 50) {
@@ -971,7 +971,7 @@ function teleports(player) {
         }
         if (result.selection === 4) {
             Economyreg(`${Icon}${TemaL} ${Name} : §rVous avez été envoyé dans Overworld${Tema}.`, player)
-            Economylog(`playsound mob.endermen.Portal @p`, player)
+            Economylog(`playsound mob.endermen.portal @p`, player)
             Economylog(`particle tp ~ ~ ~`, player)
             Economylog(`effect "${player.name}" slow_falling 15 0 true`, player)
             player.runCommandAsync(`tp "${player.name}" 425 100 697 90`)
@@ -979,7 +979,7 @@ function teleports(player) {
         }
         if (result.selection === 5) {
             Economyreg(`${Icon}${TemaL} ${Name} : §rVous avez été envoyé au Lobby${Tema}.`, player)
-            Economylog(`playsound mob.endermen.Portal @p`, player)
+            Economylog(`playsound mob.endermen.portal @p`, player)
             Economylog(`particle tp ~ ~ ~`, player)
             player.runCommandAsync(`tp "${player.name}" ${Lobby}`)
             Economylog(`gamemode s @p`, player)
@@ -1001,5 +1001,142 @@ function \u0077\u0065\u006c\u0063\u006f\u006d\u0065(player) {
         }
     })
 }
+function tpa(player) {
+    const playerObject = []
+    const playerName = []
+    for (const player of world.getPlayers()) {
+        playerName.push(player.name)
+        playerObject.push(player)
+    }
+    const form = new xtar.ModalFormData()
+        .title(`${TemaL}${Icon} TPA ${Icon}`)
+        .dropdown(`${Icon}${TemaL} >> §rHola ${Tema}${player.name}§r, para enviar un tpa asegurate que el otro jugador no tenga la opción no molestar activada\n\n${TemaL}>§r Escoge un jugador${Tema}:`, playerName)
+        .dropdown(`\n${TemaL}>§r Escoge una acción${Tema}:§r`, [" Traer a mi ubicación", " Ir a su ubicación"], 0)
+        .textField(`\n${TemaL}>§r Motivo${Tema}:`, `Acepta mi tpa pls!!!`)
+    form.show(player).then(result => {
+        const pepsi = playerObject[result.formValues[0]]
+        const cocacola = playerName[result.formValues[0]]
+        const accion = result.formValues[1]
+        const mr = result.formValues[2]
+        const form0 = new xtar.MessageFormData()
+        if (!testTag(`${PrefixET}§cNo Molestar`, pepsi)) {
+            if (!testTag(`infractor`, pepsi)) {
+                if (accion === 0) {
+                    form0.title(`${Icon} Solicitud entrante${Tema}:`)
+                    form0.body(`${Icon}${TemaL} >> §rHola ${Tema}${cocacola}§r, te acaba de llegar una solicitud de ${Tema}${player.name}§r para que vayas a su ubicación\n\n${TemaL}> §rMotivo${Tema}: §r${mr}`)
+                }
+                if (accion === 1) {
+                    form0.title(`${Icon} Solicitud entrante${Tema}:`)
+                    form0.body(`${Icon}${TemaL} >> §rHola ${Tema}${cocacola}§r, te acaba de llegar una solicitud de ${Tema}${player.name}§r para que venga a tu ubicación\n\n${TemaL}> §rMotivo${Tema}: §r${mr}`)
+                }
+                form0.button1(`§a§lAceptar solicitud`)
+                form0.button2(`§c§lRechazar solicitud`)
+                form0.show(pepsi).then(result => {
+                    if (result.selection != 1) return Economyreg(`${Icon}${TemaL} ${Name} :§r Solicitud cancelada por ${Tema}${cocacola}`, player)
+                    Economyreg(`${Icon}${TemaL} ${Name} :§r Solicitud aceptada por ${Tema}${cocacola}`, player)
+                    if (accion === 0) {
+                        player.runCommandAsync(`tp "${cocacola}" "${player.name}"`)
+                        player.runCommandAsync(`playsound mob.endermen.portal "${cocacola}"`)
+                        player.runCommandAsync(`playsound mob.endermen.portal "${player.name}"`)
+                    }
+                    if (accion === 1) {
+                        player.runCommandAsync(`tp "${player.name}" "${cocacola}"`)
+                        player.runCommandAsync(`playsound mob.endermen.portal "${cocacola}"`)
+                        player.runCommandAsync(`playsound mob.endermen.portal "${player.name}"`)
+                    }
+                })
+            } else {
+                const form = new xtar.ActionFormData()
+                    .title(`${Icon} Solicitud entrante${Tema}:`)
+                    .body(`${Icon}${TemaL} >> §rHola ${Tema}${player.name}§r, al parecer el usuario ${Tema}${cocacola}§r tiene infracciones cometidas por lo cual no se puede procesar ninguna solicitud${Tema}.`)
+                    .button(`§4§lVolver al Inicio${Click}`, 'font/icons/cancel')
+                form.show(player).then(result => {
+                    if (result.selection === 0) {
+                        Economylog(`playsound note.pling @p`, player)
+                        return server(player)
+                    }
+                })
+            }
+        } else {
+            const form = new xtar.ActionFormData()
+                .title(`${Icon} Solicitud entrante${Tema}:`)
+                .body(`${Icon} ${TemaL}>> §rOpps ${Tema}${player.name}§r, al parecer el usuario ${Tema}${cocacola}§r tiene activado el modo no molestar por lo cual no puedes procesar ninguna solicitud${Tema}.`)
+                .button(`§4§lVolver al Inicio${Click}`, 'font/icons/cancel')
+            form.show(player).then(result => {
+                if (result.selection === 0) {
+                    Economylog(`playsound note.pling @p`, player)
+                    return server(player)
+                }
+            })
+        }
+    })
+}
+function tpar(player) {
+    let players = []
+    let users = []
+    for (const player of world.getPlayers()) {
+        users.push(player.name)
+        players.push(player)
+    }
+    const form = new xtar.ModalFormData()
+        .title(`${TemaL}${Icon} TPA ${Icon}`)
+        .toggle(`${Icon}${TemaL} >>§r Activa esta opción para solicitar al otro jugador que venga a tu posición${Tema}:`)
+        .dropdown(`\n${Icon}${TemaL} >>§r Escoge el jugador${Tema}:`, users)
+    form.show(player).then(response => {
+        let p = players[response.formValues[1]] // obj
+        let u = users[response.formValues[1]] // Name
+        let r = response.formValues[0]
+        const form = new xtar.MessageFormData()
+        if (!testTag(`${PrefixET}§cNo Molestar`, p)) {
+            if (!testTag(`infractor`, p)) {
+                if (r) {
+                    form.title(`${Icon} Solicitud entrante${Tema}:`)
+                    form.body(`${Icon}${TemaL} >> §rHola ${Tema}${u}§r, te acaba de llegar una solicitud de ${Tema}${player.name}§r para que vayas a su ubicación${Tema}.`)
+                } else {
+                    form.title(`${Icon} Solicitud entrante${Tema}:`)
+                    form.body(`${Icon}${TemaL} >> §rHola ${Tema}${u}§r, te acaba de llegar una solicitud de ${Tema}${player.name}§r para que venga a tu ubicación${Tema}.`)
+                }
+                form.button1(`§a§lAceptar solicitud`)
+                form.button2(`§c§lRechazar solicitud`)
+                form.show(p).then(response => {
+                    if (response.selection != 1) return Economyreg(`${Icon}${TemaL} ${Name} :§r Solicitud cancelada por ${Tema}${u}`, player)
+                    Economyreg(`${Icon}${TemaL} ${Name} :§r Solicitud aceptada por ${Tema}${u}`, player)
+                    if (r) {
+                        player.runCommandAsync(`tp "${u}" "${player.name}"`)
+                        player.runCommandAsync(`playsound mob.endermen.portal "${u}"`)
+                        player.runCommandAsync(`playsound mob.endermen.portal "${player.name}"`)
+                    } else {
+                        player.runCommandAsync(`tp "${player.name}" "${u}"`)
+                        player.runCommandAsync(`playsound mob.endermen.portal "${u}"`)
+                        player.runCommandAsync(`playsound mob.endermen.portal "${player.name}"`)
+                    }
+                })
+            } else {
+                const form = new xtar.ActionFormData()
+                    .title(`${Icon} Solicitud entrante${Tema}:`)
+                    .body(`${Icon}${TemaL} >> §rHola ${Tema}${player.name}§r, al parecer el usuario ${Tema}${u}§r tiene infracciones cometidas por lo cual no puedes enviarle ninguna solicitud${Tema}.`)
+                    .button(`§4§lVolver al Inicio${Click}`, 'font/icons/cancel')
+                form.show(player).then(result => {
+                    if (result.selection === 0) {
+                        Economylog(`playsound note.pling @p`, player)
+                        return server(player)
+                    }
+                })
+            }
+        } else {
+            const form = new xtar.ActionFormData()
+                .title(`${Icon} Solicitud entrante${Tema}:`)
+                .body(`${Icon} ${TemaL}>> §rOpps ${Tema}${player.name}§r, al parecer el usuario ${Tema}${u}§r tiene activado el modo no molestar por lo cual no puedes enviarle ninguna solicitud${Tema}.`)
+                .button(`§4§lVolver al Inicio${Click}`, 'font/icons/cancel')
+            form.show(player).then(result => {
+                if (result.selection === 0) {
+                    Economylog(`playsound note.pling @p`, player)
+                    return server(player)
+                }
+            })
+        }
+    })
+}
+
 /// ⇏ 𝐄𝐱𝐩𝐨𝐫𝐭𝐚𝐜𝐢𝐨𝐧
 export { server, \u0077\u0065\u006c\u0063\u006f\u006d\u0065, adminm }
