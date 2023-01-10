@@ -419,7 +419,6 @@ function miningshop(player) {
         .title(`${Icon}${TemaL} MiningShop ${Icon}`)
         .body(`${TemaL}${Icon} >> §rBonjour ${Tema}${player.name}§r, voici toutes les ventes relatives aux minerais${TemaL}:§r\n§r`)
         .button(`${TemaL}Outils${Click}`, 'font/icons/anvil')
-        .button(`${TemaL}Eclairage${Click}`, 'font/icons/ilumi')
         .button(`${TemaL}Explosifs${Click}`, 'font/icons/tnt')
         .button(`§4§lRetour à la page précédente${Click}`, 'font/icons/cancel')
     form.show(player).then(result => {
