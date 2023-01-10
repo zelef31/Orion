@@ -1,0 +1,53 @@
+{
+	"format_version": "1.17.0",
+	"minecraft:entity": {
+		"description": {
+			"identifier": "esfys:texto_flotante",
+			"is_summonable": true,
+			"is_spawnable": true,
+			"is_experimental": true
+		},
+		"component_groups": {
+			"die": {
+				"minecraft:health": {
+					"value": -1
+				}
+			}
+		},
+		"components": {
+			"minecraft:nameable": {
+				"allow_name_tag_renaming": true,
+				"always_show": true
+			},
+			"minecraft:health": {
+				"value": 999999999,
+				"max": 999999999
+			},
+			"minecraft:knockback_resistance": {
+				"value": 1
+			},
+			"minecraft:collision_box": {
+				"width": 0.5,
+				"height": 0.5
+			},
+			"minecraft:scale": {
+				"value": 0
+			},
+			"minecraft:pushable": {
+				"is_pushable": false
+			},
+			"minecraft:physics": {
+				"has_gravity": false
+			}
+		},
+		"events": {
+			"die": {
+				"add": {
+					"component_groups": [
+						"die"
+					]
+				}
+			}
+		}
+	}
+}

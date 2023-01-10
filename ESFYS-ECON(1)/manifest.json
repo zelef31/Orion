@@ -1,0 +1,68 @@
+{
+	"format_version": 2,
+	"metadata": {
+		"authors": [
+			"Mathaygros"
+		],
+		"url": "https://discord.gg/NS86rnvgcp"
+	},
+	"header": {
+		"name": "§c§lMathaygros - ESFYS §4- §cECONOMY SYSTEM BE v8.2 §4⇪",
+		"description": "Un Pack avec un énorméments de Mods / Scripts. Seulement disponible et compatible avec la  §l§c1.19.50/51§r\n§c§lDiscord : Mathaygros#6340",
+		"min_engine_version": [
+			1,
+			19,
+			50
+		],
+		"uuid": "f7c9936c-2572-493d-a577-9ab877ad83a3",
+		"version": [
+			1,
+			0,
+			1
+		]
+	},
+	"modules": [
+		{
+			"type": "data",
+			"uuid": "337585c6-62a8-4045-bd70-70e4da745858",
+			"version": [
+				1,
+				0,
+				0
+			]
+		},
+		{
+			"type": "script",
+			"language": "javascript",
+			"uuid": "1180d9c1-5daa-4e3e-9850-31c766c270a6",
+			"entry": "scripts/xtar.js",
+			"version": [
+				1,
+				0,
+				0
+			]
+		}
+	],
+	"dependencies": [
+		{
+			"uuid": "24fdfebe-cb4f-4cea-a185-dccd8c015a73",
+			"version": [
+				1,
+				0,
+				1
+			]
+		},
+		{
+			"module_name": "@minecraft/server",
+			"version": "1.1.0-beta"
+		},
+		{
+			"module_name": "@minecraft/server-gametest",
+			"version": "1.0.0-beta"
+		},
+		{
+			"module_name": "@minecraft/server-ui",
+			"version": "1.0.0-beta"
+		}
+	]
+}
